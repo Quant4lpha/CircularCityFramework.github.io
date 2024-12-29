@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chart App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <div class="title-inputs">
+                <div class="title-input">
+                    <label for="chartTitle">Chart Title:</label>
+                    <input type="text" id="chartTitle" placeholder="Enter main title">
+                </div>
+                <div class="title-input">
+                    <label for="chartSubtitle">Subtitle:</label>
+                    <input type="text" id="chartSubtitle" placeholder="Enter subtitle">
+                </div>
+            </div>
+            
+            <div class="variables-section">
+                <div class="category esg-kpis">
+                    <h2>ESG KPIs</h2>
+                    
+                    <div class="group environmental">
+                        <h3>Environmental</h3>
+                        <div class="variable">
+                            <label for="var1">Air Quality</label>
+                            <select id="var1"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var2">Waste & Energy</label>
+                            <select id="var2"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var3">Green Space</label>
+                            <select id="var3"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var4">Greenhouse Gas Emissions</label>
+                            <select id="var4"></select>
+                        </div>
+                    </div>
+
+                    <div class="group social">
+                        <h3>Social</h3>
+                        <div class="variable">
+                            <label for="var5">Human Development</label>
+                            <select id="var5"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var6">Quality of Life</label>
+                            <select id="var6"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var7">Social Progress</label>
+                            <select id="var7"></select>
+                        </div>
+                    </div>
+
+                    <div class="group governance">
+                        <h3>Governance</h3>
+                        <div class="variable">
+                            <label for="var8">Transparency</label>
+                            <select id="var8"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category circularity-kpis">
+                    <h2>Circularity KPIs</h2>
+                    
+                    <div class="group resource-management">
+                        <h3>Resource Management</h3>
+                        <div class="variable">
+                            <label for="var9">Resource Reuse</label>
+                            <select id="var9"></select>
+                        </div>
+                        <div class="variable">
+                            <label for="var10">Water Management</label>
+                            <select id="var10"></select>
+                        </div>
+                    </div>
+
+                    <div class="group financial-circularity">
+                        <h3>Financial Circularity</h3>
+                        <div class="variable">
+                            <label for="var11">Bond Credit</label>
+                            <select id="var11"></select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-controls">
+                    <button id="saveBtn">Save</button>
+                    <button id="loadBtn">Load</button>
+                    <input type="file" id="fileInput" style="display: none">
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <canvas id="chartCanvas"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

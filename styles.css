@@ -1,0 +1,178 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.input-section {
+    flex: 0.8;
+    max-width: 400px;
+}
+
+.chart-section {
+    flex: 2.2;
+    min-height: 900px;
+    min-width: 900px;
+    position: relative;
+}
+
+#chartCanvas {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
+}
+
+.title-inputs {
+    margin-bottom: 20px;
+}
+
+.title-input {
+    margin-bottom: 15px;
+}
+
+.title-input:last-child {
+    margin-bottom: 0;
+}
+
+.title-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.title-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.category {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.category h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+}
+
+.esg-kpis h2 {
+    color: #04a859;
+}
+
+.circularity-kpis h2 {
+    color: #d81111;
+}
+
+.group {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.group h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.environmental {
+    background-color: rgba(126, 217, 87, 0.5);
+}
+
+.social {
+    background-color: rgba(255, 222, 89, 0.5);
+}
+
+.governance {
+    background-color: rgba(203, 108, 230, 0.5);
+}
+
+.resource-management {
+    background-color: rgba(56, 182, 255, 0.5);
+}
+
+.financial-circularity {
+    background-color: rgba(253, 112, 112, 0.5);
+}
+
+.variable {
+    margin-bottom: 12px;
+}
+
+.variable label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.variable select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.variable select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.esg-kpis {
+    border: 2px solid rgba(4, 168, 89, 0.2);
+}
+
+.circularity-kpis {
+    border: 2px solid rgba(216, 17, 17, 0.2);
+}
+
+.data-controls {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.data-controls button {
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#saveBtn {
+    background-color: #4CAF50;
+}
+
+#saveBtn:hover {
+    background-color: #45a049;
+}
+
+#loadBtn {
+    background-color: #2196F3;
+}
+
+#loadBtn:hover {
+    background-color: #1e88e5;
+}
