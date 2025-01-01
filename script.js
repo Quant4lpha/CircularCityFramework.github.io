@@ -136,6 +136,38 @@ function setupEventListeners() {
         drawChart(); // Redraw without hover text
     });
     
+    // Add click and double-click interactions
+    canvas.addEventListener('dblclick', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        
+        // Calculate distance and angle from center
+        const dx = x - centerX;
+        const dy = y - centerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        let angle = Math.atan2(dy, dx);
+        if (angle < 0) angle += 2 * Math.PI;
+        
+        // Adjust angle to match chart's starting position (-PI/2)
+        angle = (angle + Math.PI/2) % (2 * Math.PI);
+        
+        const angleStep = (2 * Math.PI) / VARIABLES.length;
+        
+        // Calculate which sector was clicked
+        const sector = Math.floor(angle / angleStep);
+        
+        // Reset value to zero if within a valid sector
+        if (sector >= 0 && sector < VARIABLES.length) {
+            const dropdown = document.getElementById(`var${sector + 1}`);
+            dropdown.value = "0";
+            drawChart();
+        }
+    });
+
     // Add click interaction to fill arcs
     canvas.addEventListener('click', (event) => {
         const rect = canvas.getBoundingClientRect();
