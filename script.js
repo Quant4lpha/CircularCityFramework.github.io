@@ -596,10 +596,78 @@ function drawChart() {
         ctx.fillText(subtitle, centerX, 65);
     }
     
-    // Draw total score
-    ctx.font = 'bold 24px Arial';
+    // Draw scores table
+    const rowHeight = 30;
+    const nameColWidth = 160;  // Wider first column for names
+    const scoreColWidth = 80;  // Narrower second column for scores
+    const tableWidth = nameColWidth + scoreColWidth;
+    const tableX = Math.min(width - tableWidth - 20, centerX + maxRadius);  // Ensure table is within canvas
+    const tableY = 80;  // Move down below title
+    const padding = 10;
+    
+    // Calculate group scores
+    const groupScores = GROUPS.map(group => {
+        let score = 0;
+        for (let i = group.startIndex; i <= group.endIndex; i++) {
+            score += parseInt(document.getElementById(`var${i+1}`).value) || 0;
+        }
+        return { name: group.name.replace('\n', ' '), score, color: group.color };
+    });
+    
+    // Draw table background with header
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    const tableHeight = (groupScores.length + 2) * rowHeight;  // +1 for total row, +1 for header
+    ctx.fillRect(tableX, tableY, tableWidth, tableHeight);
+    ctx.strokeStyle = '#ccc';
+    ctx.strokeRect(tableX, tableY, tableWidth, tableHeight);
+    
+    // Draw header
+    ctx.font = 'bold 16px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillText(`Total Score: ${totalScore}`, centerX, 120);
+    ctx.fillText('City Category Scores', tableX + tableWidth/2, tableY + rowHeight/2);
+
+    // Draw horizontal lines
+    for (let i = 1; i <= groupScores.length + 1; i++) {  // Changed < to <= to include one more line
+        ctx.beginPath();
+        ctx.moveTo(tableX, tableY + i * rowHeight);
+        ctx.lineTo(tableX + tableWidth, tableY + i * rowHeight);
+        if (i === groupScores.length + 1) {  // Double line at the last row
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.lineWidth = 1;
+        } else {
+            ctx.stroke();
+        }
+    }
+
+    // Draw vertical line (skip header row)
+    ctx.beginPath();
+    ctx.moveTo(tableX + nameColWidth, tableY + rowHeight);
+    ctx.lineTo(tableX + nameColWidth, tableY + tableHeight);
+    ctx.stroke();
+    
+    // Draw group scores (offset by header row)
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    groupScores.forEach((group, i) => {
+        const y = tableY + (i + 1) * rowHeight + rowHeight/2;  // +1 for header row
+        // Group name
+        ctx.font = '14px Arial';
+        ctx.fillStyle = group.color;
+        ctx.fillText(group.name, tableX + padding, y);
+        
+        // Score
+        ctx.textAlign = 'right';
+        ctx.fillText(group.score.toString(), tableX + tableWidth - padding, y);
+        ctx.textAlign = 'left';
+    });
+    
+    // Draw total row
+    const totalY = tableY + (groupScores.length + 1) * rowHeight + rowHeight/2;  // +1 for header row
+    ctx.font = 'bold 14px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText('Total', tableX + padding, totalY);
+    ctx.textAlign = 'right';
+    ctx.fillText(totalScore.toString(), tableX + tableWidth - padding, totalY);
 }
